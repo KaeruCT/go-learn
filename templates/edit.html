@@ -1,6 +1,20 @@
-<h1>Editing {{.Title}}</h1>
-
+{{template "header.html"}}
+<div class="options">
+    <h1 class="pull-left">go-learn wiki</h1>
+    <h2 class="pull-right">Editing {{.Title}}</h2>
+    <div class="clear"></div>
+</div>
 <form action="/save/{{.Title}}" method="POST">
-<div><textarea name="body" rows="20" cols="80">{{printf "%s" .Body}}</textarea></div>
-<div><input type="submit" value="Save"></div>
+<div>
+    <textarea name="body" rows="20" cols="104">{{printf "%s" .Body}}</textarea>
+</div>
+<div>
+    <input type="submit" value="Save">
+    {{if .New}}
+        <a href="/">Cancel</a>
+    {{else}}
+        <a href="/view/{{.Title}}">Cancel</a>
+    {{end}}
+    </div>
 </form>
+{{template "footer.html"}}

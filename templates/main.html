@@ -1,0 +1,16 @@
+{{template "header.html"}}
+<div class="options">
+    <h1 class="pull-left">go-learn wiki</h1>
+    <form class="title-form pull-right" action="/new/" method="POST">
+        <input name="title" type="text" placeholder="Page Title">
+        <input type="submit" value="New Page" />
+    </form>
+    <div class="clear"></div>
+</div>
+<h1>Listing All Pages</h1>
+<ul>
+{{range .}}
+    <li><a href="/view/{{.Title}}">{{.Title}}</a></li>
+{{end}}
+</ul>
+{{template "footer.html"}}

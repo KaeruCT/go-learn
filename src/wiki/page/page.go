@@ -1,6 +1,9 @@
 package page
 
-import "io/ioutil"
+import (
+    "io/ioutil"
+    "os"
+)
 
 type Page struct {
     Title string
@@ -19,4 +22,22 @@ func Load(location string, title string) (*Page, error) {
         return nil, err
     }
     return &Page{Title: title, Body: body}, nil
+}
+
+
+func Delete(location string, title string) error {
+    filename := location + title
+    return os.Remove(filename)
+}
+
+func ListAll(location string) ([]*Page, error) {
+    fileList, err := ioutil.ReadDir(location)
+    pages := make([]*Page, len(fileList))
+    if err != nil {
+        return nil, err
+    }
+    for i, fileInfo := range fileList {
+        pages[i], _ = Load(location, fileInfo.Name())
+    }
+    return pages, nil
 }
