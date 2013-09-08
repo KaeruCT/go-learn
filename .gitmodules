@@ -1,0 +1,3 @@
+[submodule "src/github.com/knieriem/markdown"]
+	path = src/github.com/knieriem/markdown
+	url = https://github.com/knieriem/markdown.git
